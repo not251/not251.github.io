@@ -143,6 +143,7 @@ function go(scala, modo, grado, voci, intervallo, rivoltoV, isAutoVoicing){
     out = rivolto(out, grado);
     out = rotate(out, grado);
     out = intervalli(out, voci, intervallo);
+    out = addKey(out, key);
     
     if(isAutoVoicing && voci > 2){
         out = autoVoicing(oldVoicing, out); 
@@ -154,7 +155,6 @@ function go(scala, modo, grado, voci, intervallo, rivoltoV, isAutoVoicing){
     out = rivolto(out, rivoltoV);
     out = arrayRotate(out, rivoltoV);
     out = sortUp(out);
-    out = addKey(out, key);
     
     oldVoicing = out;
     
