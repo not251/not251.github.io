@@ -53,14 +53,14 @@
 
 
                             <div class="form-floating">
-                                <select class="form-select" id="dropdown">
-                                    <option class="btn btn-dark" onclick="setMajor()">Major</option>
-                                    <option class="btn btn-dark" onclick="setHarmMajor()">Harmonic Major</option>
-                                    <option class="btn btn-dark" onclick="setMelMinor()">Melodic Minor</option>
-                                    <option class="btn btn-dark" onclick="setHarmMinor()">Harmonic Minor</option>
-                                    <option class="btn btn-dark" onclick="setMinorPentatonic()">Minor Pentatonic</option>
-                                    <option class="btn btn-dark" onclick="setHexatonic()">Hexatonic</option>
-                                    <option class="btn btn-dark" onclick="setOctatonic()">Octatonic </option>
+                                <select class="form-select" id="dropdown"  onchange="changeFunc()">
+                                    <option class="btn btn-dark" onselect="setMajor()" id="setMajor">Major</option>
+                                    <option class="btn btn-dark" onselect="setHarmMajor()" id="setHarmMajor">Harmonic Major</option>
+                                    <option class="btn btn-dark" onselect="setMelMinor()" id="setMelMinor">Melodic Minor</option>
+                                    <option class="btn btn-dark" onselect="setHarmMinor()" id="setHarmMinor">Harmonic Minor</option>
+                                    <option class="btn btn-dark" onselect="setMinorPentatonic()" id="setMinorPentatonic">Minor Pentatonic</option>
+                                    <option class="btn btn-dark" onselect="setHexatonic()" id="setHexatonic">Hexatonic</option>
+                                    <option class="btn btn-dark" onselect="setOctatonic()" id="setOctatonic">Octatonic </option>
                                 </select>
                                 <label for="dropdown">Scale preset</label>
                             </div>

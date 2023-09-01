@@ -148,6 +148,9 @@ function go(scala, modo, grado, voci, intervallo, rivoltoV, isAutoVoicing){
         out = autoVoicing(oldVoicing, out); 
     }
 
+    console.log(out);
+    console.log(oldVoicing);
+    
     out = rivolto(out, rivoltoV);
     out = arrayRotate(out, rivoltoV);
     out = sortUp(out);
@@ -299,8 +302,20 @@ return newVoicing;
 updateLabelValues();
 var nodes = document.getElementById('parameters').childNodes;
 for(var i=0; i<nodes.length; i++) {
-if (nodes[i].nodeName.toLowerCase() == 'input' || 'checkbox') {
-    nodes[i].addEventListener("change", updateLabelValues);
-}
+    if (nodes[i].nodeName.toLowerCase() == 'input' || 'checkbox') {
+        nodes[i].addEventListener("change", updateLabelValues);
+    }
 }
 
+function changeFunc() {
+    var selectBox = document.getElementById("dropdown");
+    var selectedValue = selectBox.options[selectBox.selectedIndex].id;
+    if(selectedValue == "setMajor") setMajor();
+    else if(selectedValue == "setHarmMajor") setHarmMajor();
+    else if(selectedValue == "setMelMinor") setMelMinor();
+    else if(selectedValue == "setHarmMinor") setHarmMinor();
+    else if(selectedValue == "setMinorPentatonic") setMinorPentatonic();
+    else if(selectedValue == "setHexatonic") setHexatonic();
+    else if(selectedValue == "setOctatonic") setOctatonic();
+    
+}
