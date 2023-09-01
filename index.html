@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+        <script src="./lib//jquery.min.js"></script>
+        <script src="./lib/tonal.min.js"></script>
+        <script src=./lib/audiosynth.js></script>
+        <script src="./lib/piano-keys-webcomponent.umd.min.js"></script>  
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Harmony Demo by not251</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+      
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+   
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="./assets/styles.css" rel="stylesheet" />
+    </head>
+
+    <body>
+        <!-- Responsive navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">Harmony Demo</a>
+                
+                <ul class="navbar-nav ml-auto">
+                    <a class="nav-link" href="about.html">by not251</a>
+                    <li class="nav-item">
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="text-center mt-6">
+                        <div id="parameters">
+                            <br>
+                            <br>
+                            <h1> Parameters</h1>
+                            <small id="parametersHelp" class="form-text text-muted">Move any parameter to hear and display results.</small>
+                            
+                            <br>
+                            <br>
+                            
+                            <label class="form-label" for="dictionary">Scale</label>
+                            <input class="form-control" id="dictionary" value="0 2 4 5 7 9 11">
+
+
+                            <div class="form-floating">
+                                <select class="form-select" id="dropdown">
+                                    <option class="btn btn-dark" onclick="setMajor()">Major</option>
+                                    <option class="btn btn-dark" onclick="setHarmMajor()">Harmonic Major</option>
+                                    <option class="btn btn-dark" onclick="setMelMinor()">Melodic Minor</option>
+                                    <option class="btn btn-dark" onclick="setHarmMinor()">Harmonic Minor</option>
+                                    <option class="btn btn-dark" onclick="setMinorPentatonic()">Minor Pentatonic</option>
+                                    <option class="btn btn-dark" onclick="setHexatonic()">Hexatonic</option>
+                                    <option class="btn btn-dark" onclick="setOctatonic()">Octatonic </option>
+                                </select>
+                                <label for="dropdown">Scale preset</label>
+                            </div>
+
+                            <small id="dictionaryHelp" class="form-text text-muted">Input numbers or select presets for scale.</small>
+                            <br>
+                            <br>
+                            
+                            <label class="form-label" for="key">Key</label>
+                            <input class="form-range" type="range" min="1" max="11" value="0"  id="key">
+                            <br>
+                            <small id="KeyHelp" class="form-text text-muted">Root note for scale, offset by semitones.</small>
+                            
+                            <br>
+                            <br>
+                            
+        
+                            <label class="form-label" for="mode">Mode</label>
+                            <input class="form-range" type="range" min="1" max="8" value="0"  id="mode">
+                            <br>
+                            <small id="ModeHelp" class="form-text text-muted">Selected mode, rotation of main scale.</small>
+        
+                            <br>
+                            <br>
+        
+                            <label class="form-label" for="grade">Grade</label>
+                            <input class="form-range" type="range" min="1" max="8" value="0"  id="grade">
+                            <br>
+                            <small id="GradeHelp" class="form-text text-muted">Selected grade on the scale (after mode rotation).</small>
+        
+        
+                            <br>
+                            <br>
+        
+                            <label class="form-label" for="interval">Interval</label>
+                            <input class="form-range" type="range" min="1" max="7" value="3"  id="interval">
+                            <br>
+                            <small id="IntervalHelp" class="form-text text-muted">Interval between notes in chord.</small>
+        
+                            <br>
+                            <br>
+        
+                            <label class="form-label" for="voices">Voices</label>
+                            <input class="form-range" type="range" min="0" max="8" value="3"  id="voices">
+                            <br>
+                            <small id="VoiceHelp" class="form-text text-muted">Number of voices in chord.</small>
+        
+                            <br>
+                            <br>
+        
+        
+                            <label class="form-check-label" for="autoposition">Euclidean Voice Leading</label>
+                            <input class="form-check-input" type="checkbox" id="autoposition" value="0">
+                            <br>
+                            <small id="AutopositionHelp" class="form-text text-muted">Enables automatic position selection based on eucliden distance for each voicing.</small>
+                        
+                            <br>
+                            <br>
+        
+                            <label class="form-label" for="position">Position</label>
+                            <input class="form-range" type="range" min="-3" max="3" value="0"  id="position">
+                            <br>
+                            <small id="PositionHelp" class="form-text text-muted">Chord inversion offset.</small>
+                        
+                            <br>
+                            <br>
+        
+                            <label class="form-label" for="octave">Octave</label>
+                            <input class="form-range" type="range" min="-3" max="3" value="0"  id="octave">
+                            <br>
+                            <small id="OctaveHelp" class="form-text text-muted">Octave offset.</small>
+                
+        
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <div class="container" id="results">
+                        <div class="text-center mt-6">
+                            
+                            <h1 class="display-4" id="resultValue" style="display: none;">ResultName</h1>
+
+                            <div class="jumbotron jumbotron-fluid">
+                                <div class="container">
+                                  <h1 class="display-4" id="resultName">ResultName</h1>
+                                  <p class="lead">Output Chord</p>
+                                </div>
+                            </div>
+
+                            <br>
+                            <br>
+
+                            <div class="jumbotron jumbotron-fluid">
+                                <div class="container">
+                                  <h1 class="display-4" id="resultNoteNames">Result Notes</h1>
+                                  <p class="lead">Notes Names</p>
+                                </div>
+                            </div>
+
+                            <br>
+                            <br>
+                            
+                            <div class="jumbotron jumbotron-fluid">
+                                <div class="container">
+                                  <h1 class="display-4" id="resultNoteNames">
+                                    <piano-keys id="piano-viz" keyboard-layout="C" key-count="88" read-only="on"></piano-keys>
+                                  </h1>
+                                  <p class="lead">Keyboard Visualizer</p>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+             </div>
+
+        </div>
+        <script src="./js/scripts.js"></script>
+    </body>
+
+
+    <body class="d-flex flex-column min-vh-100">
+        <main class="flex-grow-1">
+          <!-- Your page content goes here -->
+        </main>
+        <footer class=" text-center py-0">
+          <div class="container">
+            <span class="text-muted">2023 - not251</span>
+          </div>
+        </footer>
+      |</body>
