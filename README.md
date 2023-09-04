@@ -1,6 +1,6 @@
 # not251.github.io
 
-#Bibliografia
+# Bibliografia
 
 ALBINI, G. (2021). Perché le note sono sette: Una storia dei fondamenti della musica tra matematica e percezione (Fuori dal coro) eBook. Editore: Algama.
 ARBONÉS, J., MILRUD, P. (2011). L’armonia è questione di numeri: musica e matematica. Milano: RBA Italia.
