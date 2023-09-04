@@ -1,4 +1,4 @@
-# [not251.github.io](not251.github.io)
+# [not251.github.io](https://not251.github.io/)
 
 # Towards a new formal language
 
