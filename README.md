@@ -133,7 +133,7 @@ This behavior, typical of choral, keyboard, and orchestral harmonic practice, ca
 - TYMOCZKO, D. (2004). Scale networks and Debussy. Journal of Music Theory, 48(2), 219-294.
 - TYMOCZKO, D. (2006). The geometry of musical chords. Science, 313(5783), 72-74.
 - TYMOCZKO, D. (2008). Scale theory, serial theory and voice leading. Music Analysis, 27(1), 1-49.
-- TYMOCZKO, D. (2008). Set-class similarity, voice leading, and the fourier transform. Journal of Music Theory, 52(2), 251-272.
+- TYMOCZKO, D. (2008). Set-class similarity, voice leading, and the Fourier transform. Journal of Music Theory, 52(2), 251-272.
 - TYMOCZKO, D. (2009). Three Conceptions of Musical Distance. Mathematics and Computation in Music. MCM 2009. Communications in Computer and Information Science, vol 38. Springer, Berlin, Heidelberg.
 - TYMOCZKO, D. (2011). A Geometry of Music: Harmony and Counterpoint in the Extended Common Practice. New York, Oxford University Press.
 - WALKER, J., DON, G. W. (2013). Mathematics and music: composition, perception, and performance. Boca Raton, Fla: CRC Press.
