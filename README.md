@@ -1,6 +1,76 @@
 # not251.github.io
 
-# Bibliografia
+# Towards a new formal language
+
+The theoretical assumptions of our research come from a profound study of traditional harmony theory, compositional and performance practices, modal theory, and the more recent pitch-class set theory. Through the tools of algebra and their computer implementations, our attempt is to formulate and propose a formal music language that transcends cultural aspects, allowing for the creation, communication and observation of musical phenomena in a compact, comprehensive, parametric way. 
+The possible applications of this kind of language are multiple:
+- creative/compositional;
+- educational;
+- therapeutic;
+- research.
+
+# Division of the Octave
+
+In the 12-TET equal temperament used in Western music, we divide the octave into 12 equidistant semitones, which express the minimum possible distance between two adjacent sounds. In other systems, this number may vary and non-equidistant values may be selected. In the algorithm, all manipulations that involve an octave shift imply a progressive addition or subtraction of this parameter.
+
+# Scale
+In the Western system, a scale is a (ascending or descending) succession of sounds that proceed by adjacent degrees, or by intervals of a second and with adjacent names. In our algorithm, the scale is an array of integers containing the distances between the degrees and the generating sound (fundamental), expressed in semitones. 
+
+> <p>Major scale:</p> <p> 0 2 4 5 7 9 11 </p>
+
+It is also possible to express scales through the distances between one degree and another. 
+
+> <p>Major scale:</p> <p>2 2 1 2 2 2 1 </p>
+
+# Mode
+
+The term 'mode' is used to represent a rotation of the intervals in the scale vector.
+
+> <p>Major scale: 2 2 1 2 2 2 1 </p> <p>I mode: 2 2 1 2 2 2 1 </p> <p>II mode: 2 1 2 2 2 1 2 </p> <p>III mode: 1 2 2 2 1 2 2 </p> <p>IV mode: 2 2 2 1 2 2 1 </p> <p>V mode: 2 2 1 2 2 1 2 </p> <p>VI mode: 2 1 2 2 1 2 2 </p> <p>VII mode: 1 2 2 1 2 2 2 </p>
+
+In our algorithm, since the scale vector expresses the distances from the fundamental, to obtain the modes we perform a translation to 0 of the rotated vector, subtracting from all the elements the value of the first. 
+
+> <p>Major scale: 0 2 4 5 7 9 11 </p> <p> I mode: 0 2 4 5 7 9 11 </p> <p> II mode (not translated): 2 4 5 7 9 11 12 </p> <p> II mode (translated): 0 2 3 5 7 9 10 </p> 
+
+# Degree
+
+To select a degree on which to generate a voicing, the algorithm performs a further rotation of the mode vector (without translation to 0), obtaining an array of which the chosen degree is the first element. 
+
+> <p> Major scale: 0 2 4 5 7 9 11 </p> <p> I mode: 0 2 4 5 7 9 11 </p> <p> II degree: 2 4 5 7 9 11 12 </p>
+
+# Voices
+
+Number of voices in a voicing. In traditional Western harmony practice, except for doublings, more than 4 real voices in a voicing are quite rare.
+
+# Interval
+
+In traditional theory, the interval between two sounds can be expressed in semitones or with ordinal numbers, evaluating the distance between the names of the notes (counting the extremes). 
+
+> <p> C - D (ascending): 2 semitones; interval of a second. <p> </p> D - C (ascending): 10 semitones; interval of a seventh. </p>
+
+In our algorithm, the interval expresses the distance between two or more sounds measured in elements of the degree vector. 
+
+> <p> Major scale, I mode, I degree: 0 2 4 5 7 9 11 </p> <p> Number of voices: 3 </p> <p> Interval: 3 </p> <p> Voicing: 0 4 7 </p>
+
+In Western music theory the mostly used interval is the third.
+Modifying the interval variable for all voices or, by making it a vector, for individual voices, allows for the generation and more accurate representation of more complex harmonies. 
+
+> <p> Major scale, I mode, I degree: 0 2 4 5 7 9 11 </p> <p> Number of voices: 3 </p> <p> Interval: 4 </p> <p> Voicing: 0 5 11 </p> <p> Number of voices: 4 </p> <p> Intervals: 3 4 9 </p> <p> Voicing: 0 4 5 12 </p>
+
+# Position
+
+To modify the position of the generated voicing, the algorithm performs a rotation. 
+
+> <p>Major chord: 0 4 7 </p> <p> Position 0: 0 4 7 (fundamental position) </p> <p> Position 1: 4 7 12 (first inversion) </p> <p> Position 2: 7 12 14 (second inversion) </p> <p> Position -1: -5 0 4 (second inversion, lower octave) </p>
+
+The term 'voice leading' refers to the path of individual voices in the movement from one voicing to the next. 
+The algorithm performs a comparison between the last executed voicing and various possible positions of the next in terms of Euclidean distance between two points, returning the voicing that requires the least movement. 
+
+>  <p>Previous voicing: 0 4 7 </p> <p> Next voicing: 7 11 14 </p> <p> Position 0: 7 11 14 </p> <p> Position 1: 11 14 19 </p> <p> Position -1: 2 7 11 </p> <p> Position 2: 14 19 23 </p> <p> Position – 2: -1 2 7 </p> <p> Least distant voicing: -1 2 7 </p>
+
+This behavior, typical of choral, keyboard, and orchestral harmonic practice, can be modified to obtain a less parsimonious voice leading containing larger leaps, or disabled to obtain parallel harmonic motion.
+
+# Bibliography
 
 - ALBINI, G. (2021). Perché le note sono sette: Una storia dei fondamenti della musica tra matematica e percezione (Fuori dal coro) eBook. Editore: Algama.
 - ARBONÉS, J., MILRUD, P. (2011). L’armonia è questione di numeri: musica e matematica. Milano: RBA Italia.
